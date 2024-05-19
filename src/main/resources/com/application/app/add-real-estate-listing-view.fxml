@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.app.RealEstatePaneController">
+   <children>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="503.0" prefWidth="800.0">
+         <children>
+            <Text layoutX="52.0" layoutY="37.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="40.0" layoutY="94.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Surface">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="34.0" layoutY="151.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="209.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="18.0" layoutY="356.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <TextField fx:id="priceField" layoutX="124.0" layoutY="17.0" prefHeight="25.0" prefWidth="447.0" promptText="prix en DA" />
+            <TextField fx:id="surfaceField" layoutX="124.0" layoutY="74.0" prefHeight="25.0" prefWidth="447.0" promptText="surface en m²" />
+            <TextField fx:id="addressField" layoutX="124.0" layoutY="131.0" prefHeight="25.0" prefWidth="447.0" promptText="Daira, Mairie, Adresse" />
+            <ChoiceBox fx:id="realEstateTypeChoiceBox" layoutX="124.0" layoutY="189.0" prefHeight="25.0" prefWidth="150.0" />
+            <TextArea fx:id="descriptionField" layoutX="125.0" layoutY="268.0" prefHeight="201.0" prefWidth="258.0" promptText="Description" />
+            <ChoiceBox fx:id="transactionTypeChoiceBox" layoutX="609.0" layoutY="185.0" prefWidth="150.0" />
+            <Text layoutX="469.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="411.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agent Responsable">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <ChoiceBox layoutX="609.0" layoutY="336.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="116.0" prefWidth="800.0">
+         <children>
+            <ButtonBar layoutX="586.0" layoutY="52.0" prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#onCancel" text="Annuler" />
+                  <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#onApply" text="Appliquer" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

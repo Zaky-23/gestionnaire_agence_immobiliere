@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.app.ClientPaneController">
+   <children>
+      <AnchorPane prefHeight="545.0" prefWidth="800.0">
+         <children>
+            <GridPane layoutX="14.0" layoutY="14.0" prefHeight="216.0" prefWidth="600.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="171.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="429.0" minWidth="10.0" prefWidth="429.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="159.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="240.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro Tel." GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="familyNameField" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+            </GridPane>
+            <Text layoutX="89.0" layoutY="312.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Surace">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="97.0" layoutY="446.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="86.0" layoutY="379.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="63.0" layoutY="513.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Localistation">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <TextField fx:id="minSurfaceField" layoutX="222.0" layoutY="292.0" prefHeight="25.0" prefWidth="263.0" promptText="Min" />
+            <TextField fx:id="maxSurfaceField" layoutX="491.0" layoutY="292.0" prefHeight="25.0" prefWidth="263.0" promptText="Max" />
+            <TextField fx:id="minBudgetField" layoutX="222.0" layoutY="359.0" prefHeight="25.0" prefWidth="263.0" promptText="Min" />
+            <TextField fx:id="maxBudgetField" layoutX="491.0" layoutY="359.0" prefHeight="25.0" prefWidth="263.0" promptText="Max" />
+            <ChoiceBox fx:id="realEstateTypeChoiceBox" layoutX="222.0" layoutY="426.0" prefHeight="25.0" prefWidth="263.0" />
+            <TextArea fx:id="localisationField" layoutX="222.0" layoutY="472.0" prefHeight="66.0" prefWidth="542.0" promptText="Adresse, Daira, Code Postal...." />
+            <Text layoutX="331.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Préférences">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="55.0" prefWidth="800.0">
+         <children>
+            <ButtonBar layoutX="586.0" layoutY="8.0" prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#onCancel" text="Annuler" />
+                  <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#onApply" text="Appliquer" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
