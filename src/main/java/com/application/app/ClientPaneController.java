@@ -1,5 +1,6 @@
 package com.application.app;
 
+import com.application.entities.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +40,8 @@ public class ClientPaneController implements Initializable {
   @FXML
   private TextArea localisationField;
 
+  static public Client returnValue;
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     // App doesn't work, says it's null but IT'S NOt
@@ -54,6 +57,11 @@ public class ClientPaneController implements Initializable {
 
   @FXML
   public void onApply() {
+    returnValue = new Client(0, firstNameField.getText(), familyNameField.getText(), phoneNumberField.getText(), "");
+  }
+
+  public Client getReturnValue() {
+    return returnValue;
   }
 
   @FXML

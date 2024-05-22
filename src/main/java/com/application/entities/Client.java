@@ -7,10 +7,12 @@ public class Client {
     private String clientType;
     private RealEstatePreferences clientPreferences;
 
-    public Client(String firstName, String familyName, String phoneNumber) {
+    public Client(int clientId, String firstName, String familyName, String phoneNumber, String clientType) {
+        this.clientId = clientId;
         this.firstName = firstName;
         this.familyName = familyName;
         this.phoneNumber = phoneNumber;
+        this.clientType = clientType;
     }
 
     // Getters and setters

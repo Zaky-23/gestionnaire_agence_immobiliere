@@ -1,5 +1,7 @@
 package com.application.app;
 
+import com.application.entities.Client;
+import com.application.faker.Faker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -166,11 +168,6 @@ public class MainViewController implements Initializable {
   private Text agentPhoneNumber3;
   private Vector<String> agentRealEstates3;
 
-  private int currentRealEstatePageIndex = 0;
-  private int currentClientPageIndex = 0;
-  private int currentTransactionPageIndex = 0;
-  private int currentAgentPageIndex = 0;
-
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     // Real Estate
@@ -181,12 +178,9 @@ public class MainViewController implements Initializable {
     listingPane3.setDisable(true);
     listingPane3.setOpacity(0.0);
     // Clients
-    clientListing1.setDisable(true);
-    clientListing1.setOpacity(0.0);
-    clientListing2.setDisable(true);
-    clientListing2.setOpacity(0.0);
-    clientListing3.setDisable(true);
-    clientListing3.setOpacity(0.0);
+    setClientListing1();
+    setClientListing2();
+    setClientListing3();
     // Transactions
     transactionListing1.setDisable(true);
     transactionListing1.setOpacity(0.0);
@@ -195,12 +189,11 @@ public class MainViewController implements Initializable {
     transactionListing3.setDisable(true);
     transactionListing3.setOpacity(0.0);
     // Agents
-    agentListing1.setDisable(true);
-    agentListing1.setOpacity(0.0);
-    agentListing2.setDisable(true);
-    agentListing2.setOpacity(0.0);
-    agentListing3.setDisable(true);
-    agentListing3.setOpacity(0.0);
+
+    setAgentListing1();
+    setAgentListing2();
+    setAgentListing3();
+
   }
 
   @FXML
@@ -217,46 +210,211 @@ public class MainViewController implements Initializable {
     changeScene(event, "research-qurey-view.fxml");
   }
 
+  private int currentRealEstatePageIndex = 0;
+  private void setRealEstateListing1() {
+    var realEstate = Faker.realEstates.get(currentAgentPageIndex + 0);
+    if (realEstate != null) {
+      priceText1.setText(String.valueOf(realEstate.getPrice()));
+      surfaceText1.setText(String.valueOf(realEstate.getSurface()));
+
+    } else {
+
+    }
+  }
+
+  private void setRealEstateListing2() {
+
+  }
+
+  private void setRealEstateListing3() {
+
+  }
+
+  private int currentClientPageIndex = 0;
   @FXML
-  protected void onModifyListing1() {
-
+  protected void onModifyClientListing1(ActionEvent event) throws IOException {
   }
 
   @FXML
-  protected void onModifyListing2() {
-
+  protected void onModifyClientListing2(ActionEvent event) throws IOException {
   }
 
   @FXML
-  protected void onModifyListing3() {
-
+  protected void onModifyClientListing3(ActionEvent event) throws IOException {
   }
 
   @FXML
-  protected void onDeleteListing1() {
-
+  protected void onDeleteClientListing1() {
+    Faker.clients.remove(currentClientPageIndex * 3 + 0);
+    setClientListing1();
+    setClientListing2();
+    setClientListing3();
   }
 
   @FXML
-  protected void onDeleteListing2() {
-
+  protected void onDeleteClientListing2() {
+    Faker.clients.remove(currentClientPageIndex * 3 + 1);
+    setClientListing1();
+    setClientListing2();
+    setClientListing3();
   }
 
   @FXML
-  protected void onDeleteListing3() {
+  protected void onDeleteClientListing3() {
+    Faker.clients.remove(currentClientPageIndex * 3 + 2);
+    setClientListing1();
+    setClientListing2();
+    setClientListing3();
+  }
+  @FXML
+  protected void onClientPaneNext() {
+    if (currentClientPageIndex + 1 > Faker.clients.size() / 3) {
+      return;
+    }
+
+    currentClientPageIndex += 1;
+    setClientListing1();
+    setClientListing2();
+    setClientListing3();
+  }
+
+  @FXML
+  protected void onClientPanePrevious() {
+    currentClientPageIndex -= 1;
+
+    if (currentClientPageIndex < 0) {
+      currentClientPageIndex = 0;
+    }
+    setClientListing1();
+    setClientListing2();
+    setClientListing3();
+  }
+  private void setClientListing1() {
+    Client client = null;
+    try {
+      client = Faker.clients.get(currentClientPageIndex + 0);
+    } catch (Exception e) {
+      clientListing1.setDisable(true);
+      clientListing1.setOpacity(0.0);
+      return;
+    }
+
+    clientListing1.setDisable(false);
+    clientListing1.setOpacity(1.0);
+    clientFirstName1.setText(client.getFamilyName());
+    clientFamilyName1.setText(client.getFamilyName());
+  }
+
+  private void setClientListing2() {
+    Client client = null;
+    try {
+      client = Faker.clients.get(currentClientPageIndex + 1);
+    } catch (Exception e) {
+      clientListing2.setDisable(true);
+      clientListing2.setOpacity(0.0);
+      return;
+    }
+
+    clientListing2.setDisable(false);
+    clientListing2.setOpacity(1.0);
+    clientFirstName2.setText(client.getFamilyName());
+    clientFamilyName2.setText(client.getFamilyName());
+  }
+
+  private void setClientListing3() {
+    Client client = null;
+    try {
+      client = Faker.clients.get(currentClientPageIndex + 2);
+    } catch (Exception e) {
+      clientListing3.setDisable(true);
+      clientListing3.setOpacity(0.0);
+      return;
+    }
+
+    clientListing3.setDisable(false);
+    clientListing3.setOpacity(1.0);
+    clientFirstName3.setText(client.getFamilyName());
+    clientFamilyName3.setText(client.getFamilyName());
+  }
+
+  private int currentTransactionPageIndex = 0;
+  private void setTransactionListing1() {
 
   }
 
-  private void setListing1() {
+  private void setTransactionListing2() {
 
   }
 
-  private void setListing2() {
+  private void setTransactionListing3() {
 
   }
 
-  private void setListing3() {
+  private int currentAgentPageIndex = 0;
+  @FXML
+  protected void onAgentPaneNext() {
+    if (currentAgentPageIndex + 1 > Faker.agents.size() / 3) {
+      return;
+    }
 
+    currentAgentPageIndex += 1;
+    setAgentListing1();
+    setAgentListing2();
+    setAgentListing3();
+  }
+
+  @FXML
+  protected void onAgentPanePrevious() {
+    currentAgentPageIndex -= 1;
+
+    if (currentAgentPageIndex < 0) {
+      currentAgentPageIndex = 0;
+    }
+    setAgentListing1();
+    setAgentListing2();
+    setAgentListing3();
+  }
+
+  private void setAgentListing1() {
+    var agent = Faker.agents.get(currentAgentPageIndex + 0);
+    if(agent != null) {
+      agentListing1.setDisable(false);
+      agentListing1.setOpacity(1.0);
+      agentFirstName1.setText(agent.getFirstName());
+      agentFamilyName1.setText(agent.getFamilyName());
+      agentPhoneNumber1.setText(agent.getPhoneNumber());
+    } else {
+      agentListing1.setDisable(true);
+      agentListing1.setOpacity(0.0);
+    }
+  }
+
+  private void setAgentListing2() {
+    var agent = Faker.agents.get(currentAgentPageIndex + 1);
+    if( agent != null) {
+      agentListing2.setDisable(false);
+      agentListing2.setOpacity(1.0);
+      agentFirstName2.setText(agent.getFirstName());
+      agentFamilyName2.setText(agent.getFamilyName());
+      agentPhoneNumber2.setText(agent.getPhoneNumber());
+    } else {
+      agentListing2.setDisable(true);
+      agentListing2.setOpacity(0.0);
+    }
+  }
+
+  private void setAgentListing3() {
+    var agent = Faker.agents.get(currentAgentPageIndex + 2);
+    if( agent != null) {
+      agentListing3.setDisable(false);
+      agentListing3.setOpacity(1.0);
+      agentFirstName3.setText(agent.getFirstName());
+      agentFamilyName3.setText(agent.getFamilyName());
+      agentPhoneNumber3.setText(agent.getPhoneNumber());
+    } else {
+      agentListing3.setDisable(true);
+      agentListing3.setOpacity(0.0);
+    }
   }
 
   private void changeScene(ActionEvent event, String sceneName) throws IOException {

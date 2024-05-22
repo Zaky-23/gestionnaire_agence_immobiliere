@@ -12,7 +12,7 @@ public final class DatabaseController {
         Vector<Transaction> transactions = new Vector<>();
         try (Connection connection = DatabaseConnector.getConnection()) {
             // Execute a query to get all transaction values
-            String query = "SELECT * FROM agence.transactions ;";
+            String query = "SELECT * FROM transactions ;";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -42,7 +42,7 @@ public final class DatabaseController {
 
     public static Vector<Transaction> getTransactionsById(int id) {
         Vector<Transaction> transactions = new Vector<>();
-        String querySQL = "SELECT * FROM agence.transactions WHERE trsc_id = ? ;";
+        String querySQL = "SELECT * FROM transactions WHERE trsc_id = ? ;";
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(querySQL)) {
@@ -76,7 +76,7 @@ public final class DatabaseController {
     public void addTransaction(int trscId, String transactionType, int agentId, int clientId,
                                String clientFN, String clientLN, String clientPN,
                                String ownerInfo, String ownerPN, int reId, Date date) {
-        String insertSQL = "INSERT INTO agence.transactions VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String insertSQL = "INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
@@ -104,7 +104,7 @@ public final class DatabaseController {
         }
     }
     public void removeTransaction(int id) {
-        String deleteSQL = "DELETE FROM agence.transactions WHERE trsc_id = ?;";
+        String deleteSQL = "DELETE FROM transactions WHERE trsc_id = ?;";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)) {
 
@@ -123,7 +123,7 @@ public final class DatabaseController {
         Vector<Agent> agents = new Vector<>();
 
         try (Connection connection = DatabaseConnector.getConnection()) {
-            String query = "SELECT * FROM agence.agents;";
+            String query = "SELECT * FROM agents;";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -133,7 +133,7 @@ public final class DatabaseController {
                     String lastName = resultSet.getString("Last_Name");
                     int phoneNumber = resultSet.getInt("Phone_num");
 
-                    Agent agent = new Agent(agentId, firstName, lastName, phoneNumber);
+                    Agent agent = new Agent(agentId, firstName, lastName, String.valueOf(phoneNumber));
                     agents.add(agent);
                 }
             }
@@ -145,7 +145,7 @@ public final class DatabaseController {
     }
     public static Agent getAgentDetails(int ID) {
         Agent agent = null;
-        String selectSQL = "SELECT * FROM agence.agents WHERE Agent_id = ?;";
+        String selectSQL = "SELECT * FROM agents WHERE Agent_id = ?;";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
             // Set the ID parameter in the query
@@ -157,7 +157,7 @@ public final class DatabaseController {
                     int phoneNum = resultSet.getInt("Phone_num");
 
                     // Create Agent object
-                    agent = new Agent(ID, firstName, lastName, phoneNum);
+                    agent = new Agent(ID, firstName, lastName, String.valueOf(phoneNum));
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -172,7 +172,7 @@ public final class DatabaseController {
         Vector<RealEstate> realEstateList = new Vector<>();
 
         try (Connection connection = DatabaseConnector.getConnection()) {
-            String query = "SELECT * FROM agence.agenceimmob;";
+            String query = "SELECT * FROM agenceimmob;";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -203,7 +203,7 @@ public final class DatabaseController {
     }
     public void addRealEstate(int id, RealEstateType realEstateType, double price, int surface, String address,
                               TransactionType transactionType, String description, int agentId) {
-        String insertSQL = "INSERT INTO agence.agenceimmob (RE_id, RealEst_Type, Price, Surface, Address, Transaction_Type, Description, Agent_id) " +
+        String insertSQL = "INSERT INTO agenceimmob (RE_id, RealEst_Type, Price, Surface, Address, Transaction_Type, Description, Agent_id) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
@@ -228,7 +228,7 @@ public final class DatabaseController {
     }
     public void modifyRealEstate(int id, RealEstateType realEstateType, double price, int surface, String address,
                                  TransactionType transactionType, String description, int agentId) {
-        String updateSQL = "UPDATE agence.agenceimmob SET RealEst_Type = ?, Price = ?, Surface = ?, Address = ?, " +
+        String updateSQL = "UPDATE agenceimmob SET RealEst_Type = ?, Price = ?, Surface = ?, Address = ?, " +
                 "Transaction_Type = ?, Description = ?, Agent_id = ? WHERE RE_id = ?;";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateSQL)) {
@@ -253,7 +253,7 @@ public final class DatabaseController {
     }
 
     public static boolean isAvailable(int id) {
-        String querySQL = "SELECT Contract FROM agence.agenceimmob WHERE id = ?;";
+        String querySQL = "SELECT Contract FROM agenceimmob WHERE id = ?;";
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(querySQL)) {
@@ -274,7 +274,7 @@ public final class DatabaseController {
     }
     public static Vector<RealEstate> getDetails(int re_id, int ag_id) {
         Vector<RealEstate> realEstates = new Vector<>();
-        String selectSQL = "SELECT * FROM your_table WHERE RE_id = ? OR Agent_id = ?;";
+        String selectSQL = "SELECT * FROM agenceimmob WHERE RE_id = ? OR Agent_id = ?;";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
 
@@ -310,9 +310,10 @@ public final class DatabaseController {
         }
         return realEstates;
     }
+    
     public static void deleteRealEstateById(int realEstateId) {
         try (Connection connection = DatabaseConnector.getConnection()) {
-            String query = "DELETE FROM agence.agenceimmob WHERE RE_id = ?;";
+            String query = "DELETE FROM agenceimmob WHERE RE_id = ?;";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setInt(1, realEstateId);
@@ -327,9 +328,36 @@ public final class DatabaseController {
     }
 
     //Client functions
+    public static Vector<Client> getAllClients() {
+        Vector<Client> clients = new Vector<>();
+        String selectSQL = "SELECT * FROM clients";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int clientId = resultSet.getInt("Client_id");
+                String firstName = resultSet.getString("Client_FN");
+                String lastName = resultSet.getString("Client_LN");
+                int phoneNumber = resultSet.getInt("Client_PN");
+                String clientType = resultSet.getString("Client_type");
+
+                Client client = new Client(clientId, firstName, lastName, String.valueOf(phoneNumber), clientType);
+                clients.add(client);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error retrieving clients from the database", e);
+        }
+
+        return clients;
+    }
+
     public Vector<Transaction> getClientHistory(int ID) {
         Vector<Transaction> transactions = new Vector<>();
-        String selectSQL = "SELECT * FROM agence.transactions WHERE Client_id = ?;";
+        String selectSQL = "SELECT * FROM transactions WHERE Client_id = ?;";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
 
@@ -364,7 +392,7 @@ public final class DatabaseController {
         return transactions;
     }
     public boolean hasTransactionHistory(int clientId) {
-        String querySQL = "SELECT COUNT(*) FROM agence.transactions WHERE Client_id = ?;";
+        String querySQL = "SELECT COUNT(*) FROM transactions WHERE Client_id = ?;";
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(querySQL)) {
@@ -385,7 +413,7 @@ public final class DatabaseController {
         return false;
     }
     public static void addClient(int clientId, String clientFN, String clientLN, int clientPN, String clientType) {
-        String insertSQL = "INSERT INTO agence.clients (Client_id, Client_FN, Client_LN, Client_PN, Client_type) VALUES (?, ?, ?, ?, ?);";
+        String insertSQL = "INSERT INTO clients (Client_id, Client_FN, Client_LN, Client_PN, Client_type) VALUES (?, ?, ?, ?, ?);";
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
@@ -406,7 +434,7 @@ public final class DatabaseController {
         }
     }
     public static void deleteClientById(int clientId) {
-        String deleteSQL = "DELETE FROM agence.clients WHERE Client_id = ?;";
+        String deleteSQL = "DELETE FROM clients WHERE Client_id = ?;";
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)) {
@@ -428,7 +456,7 @@ public final class DatabaseController {
     public static Vector<RealEstatePreferences> getAllPreferences() {
         Vector<RealEstatePreferences> preferences = new Vector<>();
 
-        String query = "SELECT * FROM agence.preferences;";
+        String query = "SELECT * FROM preferences;";
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -456,7 +484,7 @@ public final class DatabaseController {
     }
     public static void addPreference(int clientId, int minSurface, int maxSurface, String address,
                                      RealEstateType realEstateType, double minBudget, double maxBudget) {
-        String insertSQL = "INSERT INTO agence.preferences (Client_id, Min_Surface, Max_Surface, Address, Realest_type, Min_Budget, Max_Budget) " +
+        String insertSQL = "INSERT INTO preferences (Client_id, Min_Surface, Max_Surface, Address, Realest_type, Min_Budget, Max_Budget) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         try (Connection connection = DatabaseConnector.getConnection();
@@ -480,7 +508,7 @@ public final class DatabaseController {
         }
     }
     public static void deletePreferencesByClientId(int clientId) {
-        String deleteSQL = "DELETE FROM agence.preferences WHERE Client_id = ?;";
+        String deleteSQL = "DELETE FROM preferences WHERE Client_id = ?;";
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)) {

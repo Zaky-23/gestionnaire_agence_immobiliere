@@ -108,8 +108,8 @@
                                        <left>
                                           <Pane prefHeight="157.0" prefWidth="87.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDeleteListing1" text="Supprimer" />
-                                                <Button layoutX="13.0" layoutY="66.0" mnemonicParsing="false" onAction="#onModifyListing1" text="Modifier" />
+                                                <Button layoutX="8.0" layoutY="14.0" mnemonicParsing="false" text="Supprimer" />
+                                                <Button layoutX="13.0" layoutY="66.0" mnemonicParsing="false" text="Modifier" />
                                                 <Button layoutX="8.0" layoutY="117.0" mnemonicParsing="false" text="Transacter" />
                                              </children>
                                           </Pane>
@@ -181,8 +181,8 @@
                                        <left>
                                           <Pane prefHeight="154.0" prefWidth="84.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDeleteListing2" text="Supprimer" />
-                                                <Button layoutX="11.0" layoutY="68.0" mnemonicParsing="false" onAction="#onModifyListing2" text="Modifier" />
+                                                <Button layoutX="6.0" layoutY="14.0" mnemonicParsing="false" text="Supprimer" />
+                                                <Button layoutX="11.0" layoutY="68.0" mnemonicParsing="false" text="Modifier" />
                                                 <Button layoutX="6.0" layoutY="121.0" mnemonicParsing="false" text="Transacter" />
                                              </children>
                                           </Pane>
@@ -254,8 +254,8 @@
                                        <left>
                                           <Pane prefHeight="156.0" prefWidth="83.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button layoutX="6.0" layoutY="11.0" mnemonicParsing="false" onAction="#onDeleteListing3" text="Supprimer" />
-                                                <Button layoutX="11.0" layoutY="69.0" mnemonicParsing="false" onAction="#onModifyListing3" text="Modifier" />
+                                                <Button layoutX="6.0" layoutY="11.0" mnemonicParsing="false" text="Supprimer" />
+                                                <Button layoutX="11.0" layoutY="69.0" mnemonicParsing="false" text="Modifier" />
                                                 <Button layoutX="5.0" layoutY="123.0" mnemonicParsing="false" text="Transacter" />
                                              </children>
                                           </Pane>
@@ -298,8 +298,8 @@
                               </ToolBar>
                               <ButtonBar layoutY="531.0" prefHeight="40.0" prefWidth="800.0" style="-fx-border-color: Black;">
                                  <buttons>
-                                    <Button mnemonicParsing="false" text="Précédent" />
-                                    <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Suivant" />
+                                    <Button mnemonicParsing="false" onAction="#onClientPanePrevious" text="Précédent" />
+                                    <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#onClientPaneNext" text="Suivant" />
                                  </buttons>
                               </ButtonBar>
                               <GridPane layoutY="51.0" prefHeight="469.0" prefWidth="800.0">
@@ -361,7 +361,7 @@
                                        <right>
                                           <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button layoutX="73.0" layoutY="22.0" mnemonicParsing="false" text="Supprimer" />
+                                                <Button layoutX="73.0" layoutY="22.0" mnemonicParsing="false" onAction="#onDeleteClientListing1" text="Supprimer" />
                                                 <Button layoutX="71.0" layoutY="54.0" mnemonicParsing="false" text="Préférences" />
                                                 <Button layoutX="79.0" layoutY="118.0" mnemonicParsing="false" text="Modifier" />
                                                 <Button layoutX="74.0" layoutY="86.0" mnemonicParsing="false" text="Historique" />
@@ -418,7 +418,7 @@
                                        <right>
                                           <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button layoutX="74.0" layoutY="20.0" mnemonicParsing="false" text="Supprimer" />
+                                                <Button layoutX="74.0" layoutY="20.0" mnemonicParsing="false" onAction="#onDeleteClientListing2" text="Supprimer" />
                                                 <Button layoutX="71.0" layoutY="52.0" mnemonicParsing="false" text="Préférences" />
                                                 <Button layoutX="79.0" layoutY="117.0" mnemonicParsing="false" text="Modifier" />
                                                 <Button layoutX="74.0" layoutY="86.0" mnemonicParsing="false" text="Historique" />
@@ -475,7 +475,7 @@
                                        <right>
                                           <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button layoutX="73.0" layoutY="20.0" mnemonicParsing="false" text="Supprimer" />
+                                                <Button layoutX="73.0" layoutY="20.0" mnemonicParsing="false" onAction="#onDeleteClientListing3" text="Supprimer" />
                                                 <Button layoutX="70.0" layoutY="53.0" mnemonicParsing="false" text="Préférences" />
                                                 <Button layoutX="79.0" layoutY="117.0" mnemonicParsing="false" text="Modifier" />
                                                 <Button layoutX="73.0" layoutY="85.0" mnemonicParsing="false" text="Historique" />
@@ -829,8 +829,8 @@
                               <ToolBar prefHeight="40.0" prefWidth="800.0" />
                               <ButtonBar layoutX="1.0" layoutY="531.0" prefHeight="40.0" prefWidth="799.0" style="-fx-border-color: black;">
                                 <buttons>
-                                  <Button mnemonicParsing="false" text="Précédent" />
-                                    <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Suivant">
+                                  <Button mnemonicParsing="false" onAction="#onAgentPanePrevious" text="Précédent" />
+                                    <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#onAgentPaneNext" text="Suivant">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>

@@ -3,10 +3,10 @@ public class Agent {
     private int agentId;
     private String firstName;
     private String familyName;
-    private int phoneNumber;
+    private String phoneNumber;
 
     // Constructor
-    public Agent(int agentId, String firstName, String familyName, int phoneNumber) {
+    public Agent(int agentId, String firstName, String familyName, String phoneNumber) {
         this.agentId = agentId;
         this.firstName = firstName;
         this.familyName = familyName;
@@ -26,7 +26,7 @@ public class Agent {
         return familyName;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -43,7 +43,7 @@ public class Agent {
         this.familyName = familyName;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }
